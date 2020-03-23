@@ -1,20 +1,20 @@
-setwd('D:\\¬ã¨s©Ò(2019.9.23)\\ºÓ¤@¤W\\RÅª®Ñ·|\\project\\data\\air_Taichung\\csv')
+setwd('D:\\...')
 #library(readxl)
 #library(stringr)
 library(tidyverse)
 library(highcharter)
 library(ggplot2)
 
-# ªÅ¦¾¸ê®Æ
-air_data107 <- read.csv('107¦~¦è¤Ù¯¸_20190315.csv',fileEncoding = "UCS-2LE")
-air_data107_1 <- read.csv('107¦~¦è¤Ù¯¸_20190315.csv',fileEncoding = "UCS-2LE")
+# ç©ºæ±™è³‡æ–™
+air_data107 <- read.csv('107å¹´è¥¿å±¯ç«™_20190315.csv',fileEncoding = "UCS-2LE")
+air_data107_1 <- read.csv('107å¹´è¥¿å±¯ç«™_20190315.csv',fileEncoding = "UCS-2LE")
 
 for(i in c(4:27)){
   air_data107_1[,i] <- as.numeric(as.character(air_data107[,i]))
 }
 air_data107_1[is.na(air_data107_1)]=0
 
-air_data107_pm2.5 <- air_data107_1[air_data107_1$´ú¶µ=='PM2.5',]
+air_data107_pm2.5 <- air_data107_1[air_data107_1$æ¸¬é …=='PM2.5',]
 for(i in c(4:27)){
   for(x in c(1:365)){
     if(air_data107_pm2.5[x,i]>250){
@@ -26,7 +26,7 @@ max_2.5 <-  apply(air_data107_pm2.5[,4:27],1,max,na.rm=TRUE)
 max_2.5 <- data.frame(max_2.5)
 air_data107_pm2.5 <- cbind(air_data107_pm2.5[,1:3],max_2.5)
 
-air_data107_pm10 <- air_data107_1[air_data107_1$´ú¶µ=='PM10',]
+air_data107_pm10 <- air_data107_1[air_data107_1$æ¸¬é …=='PM10',]
 for(i in c(4:27)){
   for(x in c(1:365)){
     if(air_data107_pm10[x,i]>250){
@@ -38,7 +38,7 @@ max_10 = apply(air_data107_pm10[,4:27],1,max,na.rm=TRUE)
 max_10 <- data.frame(max_10)
 air_data107_pm2.5 <- cbind(air_data107_pm2.5,max_10)
 
-air_data107_co <- air_data107_1[air_data107_1$´ú¶µ=='CO',]
+air_data107_co <- air_data107_1[air_data107_1$æ¸¬é …=='CO',]
 for(i in c(4:27)){
   for(x in c(1:365)){
     if(air_data107_co[x,i]>4){
@@ -50,7 +50,7 @@ max_co = apply(air_data107_co[,4:27],1,max,na.rm=TRUE)
 max_co <- data.frame(max_co)
 air_data107_pm2.5 <- cbind(air_data107_pm2.5,max_co)
 
-air_data107_no2 <- air_data107_1[air_data107_1$´ú¶µ=='NO2',]
+air_data107_no2 <- air_data107_1[air_data107_1$æ¸¬é …=='NO2',]
 for(i in c(4:27)){
   for(x in c(1:365)){
     if(air_data107_no2[x,i]>250){
@@ -62,7 +62,7 @@ max_no2 = apply(air_data107_no2[,4:27],1,max,na.rm=TRUE)
 max_no2 <- data.frame(max_no2)
 air_data107_pm2.5 <- cbind(air_data107_pm2.5,max_no2)
 
-air_data107_so2 <- air_data107_1[air_data107_1$´ú¶µ=='NO2',]
+air_data107_so2 <- air_data107_1[air_data107_1$æ¸¬é …=='NO2',]
 for(i in c(4:27)){
   for(x in c(1:365)){
     if(air_data107_so2[x,i]>250){
@@ -74,7 +74,7 @@ max_so2 = apply(air_data107_so2[,4:27],1,max,na.rm=TRUE)
 max_so2 <- data.frame(max_so2)
 air_data107_pm2.5 <- cbind(air_data107_pm2.5,max_so2)
 
-air_data107_o3 <- air_data107_1[air_data107_1$´ú¶µ=='O3',]
+air_data107_o3 <- air_data107_1[air_data107_1$æ¸¬é …=='O3',]
 for(i in c(4:27)){
   for(x in c(1:365)){
     if(air_data107_o3[x,i]>200){
@@ -89,8 +89,8 @@ air_data107_pm2.5 <- cbind(air_data107_pm2.5,max_o3)
 summary(air_data107_pm2.5)
 
 highchart()%>%
-  hc_title(text='¤»¤jªÅ®ğ«ü¼Ğ')%>%
-  hc_xAxis(categories=air_data107_pm2.5$¤é´Á)%>%
+  hc_title(text='å…­å¤§ç©ºæ°£æŒ‡æ¨™')%>%
+  hc_xAxis(categories=air_data107_pm2.5$æ—¥æœŸ)%>%
   hc_add_series(name='PM2.5',data=air_data107_pm2.5$max_2.5)%>%
   hc_add_series(name='PM10',data=air_data107_pm2.5$max_10)%>%
   hc_add_series(name='CO',data=air_data107_pm2.5$max_co)%>%
@@ -99,7 +99,7 @@ highchart()%>%
   hc_add_series(name='O3',data=air_data107_pm2.5$max_o3)
 
 air_data107_pm2.5_sep <- air_data107_pm2.5 %>%
-  separate(¤é´Á
+  separate(æ—¥æœŸ
            ,sep=c(5,7) 
            ,into=c('year','month','date'))
 aa <- group_by(air_data107_pm2.5_sep,month)%>%
@@ -112,31 +112,31 @@ highchart()%>%
 
 
 ############################################################
-# ¥x¤¤¤õ¤Oµo¹q¶q
-setwd('D:\\¬ã¨s©Ò(2019.9.23)\\ºÓ¤@¤W\\RÅª®Ñ·|\\project\\data')
+# å°ä¸­ç«åŠ›ç™¼é›»é‡
+setwd('D:\\...')
 data <- read.csv('sum of supply by month.csv',header=T,fileEncoding = 'UCS-2LE')
 data[is.na(data)] <- 0
 sum_taichung_fire <- apply(data[,16:25],1,sum)
 sum_taichung_fire <- data.frame(sum_taichung_fire)
 data1 <- cbind(data[,c(16:25,71)],sum_taichung_fire)
 highchart()%>%
-  hc_title(text='¥x¤¤¤õ¤Oµo¹qÁ`¨ÑÀ³¹q¶q')%>%
+  hc_title(text='å°ä¸­ç«åŠ›ç™¼é›»ç¸½ä¾›æ‡‰é›»é‡')%>%
   hc_xAxis(categories=data1$date)%>%
-  hc_add_series(name='¤õ¤OÁ`¨Ñ¹q¶q',data=data1$sum_taichung_fire)
+  hc_add_series(name='ç«åŠ›ç¸½ä¾›é›»é‡',data=data1$sum_taichung_fire)
 
 highchart()%>%
-  hc_title(text='¥x¤¤¤õ¤Oµo¹q¨ÑÀ³¹q¶q')%>%
+  hc_title(text='å°ä¸­ç«åŠ›ç™¼é›»ä¾›æ‡‰é›»é‡')%>%
   hc_xAxis(categories=data$date)%>%
-  hc_add_series(name='¥x¤¤1',data=data$'¥x¤¤1')%>%
-  hc_add_series(name='¥x¤¤2',data=data$'¥x¤¤2')%>%
-  hc_add_series(name='¥x¤¤3',data=data$'¥x¤¤3')%>%
-  hc_add_series(name='¥x¤¤4',data=data$'¥x¤¤4')%>%
-  hc_add_series(name='¥x¤¤5',data=data$'¥x¤¤5')%>%
-  hc_add_series(name='¥x¤¤6',data=data$'¥x¤¤6')%>%
-  hc_add_series(name='¥x¤¤7',data=data$'¥x¤¤7')%>%
-  hc_add_series(name='¥x¤¤8',data=data$'¥x¤¤8')%>%
-  hc_add_series(name='¥x¤¤9',data=data$'¥x¤¤9')%>%
-  hc_add_series(name='¥x¤¤10',data=data$'¥x¤¤10')
+  hc_add_series(name='å°ä¸­1',data=data$'å°ä¸­1')%>%
+  hc_add_series(name='å°ä¸­2',data=data$'å°ä¸­2')%>%
+  hc_add_series(name='å°ä¸­3',data=data$'å°ä¸­3')%>%
+  hc_add_series(name='å°ä¸­4',data=data$'å°ä¸­4')%>%
+  hc_add_series(name='å°ä¸­5',data=data$'å°ä¸­5')%>%
+  hc_add_series(name='å°ä¸­6',data=data$'å°ä¸­6')%>%
+  hc_add_series(name='å°ä¸­7',data=data$'å°ä¸­7')%>%
+  hc_add_series(name='å°ä¸­8',data=data$'å°ä¸­8')%>%
+  hc_add_series(name='å°ä¸­9',data=data$'å°ä¸­9')%>%
+  hc_add_series(name='å°ä¸­10',data=data$'å°ä¸­10')
 
 ############################################################
 
