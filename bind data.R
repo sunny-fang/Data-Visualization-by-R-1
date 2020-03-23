@@ -1,16 +1,16 @@
-setwd('D:\\¬ã¨s©Ò(2019.9.23)\\ºÓ¤@¤W\\RÅª®Ñ·|\\project\\data\\air_Taichung\\csv')
+setwd('D:\\...')
 library(tidyverse)
 
-# ªÅ¦¾¸ê®Æ
-air_data107 <- read.csv('107¦~©¾©ú¯¸_20190315.csv',fileEncoding = "UCS-2LE")
-air_data107_1 <- read.csv('107¦~©¾©ú¯¸_20190315.csv',fileEncoding = "UCS-2LE")
+# ç©ºæ±™è³‡æ–™
+air_data107 <- read.csv('107å¹´å¿ æ˜Žç«™_20190315.csv',fileEncoding = "UCS-2LE")
+air_data107_1 <- read.csv('107å¹´å¿ æ˜Žç«™_20190315.csv',fileEncoding = "UCS-2LE")
 
 for(i in c(4:27)){
   air_data107_1[,i] <- as.numeric(as.character(air_data107[,i]))
 }
 air_data107_1[is.na(air_data107_1)]=0
 
-air_data107_pm2.5 <- air_data107_1[air_data107_1$´ú¶µ=='PM2.5',]
+air_data107_pm2.5 <- air_data107_1[air_data107_1$æ¸¬é …=='PM2.5',]
 for(i in c(4:27)){
   for(x in c(1:365)){
     if(air_data107_pm2.5[x,i]>250){
@@ -22,10 +22,10 @@ max_2.5 <-  apply(air_data107_pm2.5[,4:27],1,max,na.rm=TRUE)
 max_2.5 <- data.frame(max_2.5)
 air_data107_pm2.5 <- cbind(air_data107_pm2.5[,1:3],max_2.5)
 
-#row <- c('2015/11/27','¨F³À','PM2.5',0)
+#row <- c('2015/11/27','æ²™é¹¿','PM2.5',0)
 #air_data107_pm2.5 <- rbind(air_data107_pm2.5[1:330,], row, air_data107_pm2.5[331:nrow(air_data107_pm2.5), ])
 
-air_data107_pm10 <- air_data107_1[air_data107_1$´ú¶µ=='PM10',]
+air_data107_pm10 <- air_data107_1[air_data107_1$æ¸¬é …=='PM10',]
 for(i in c(4:27)){
   for(x in c(1:365)){
     if(air_data107_pm10[x,i]>250){
@@ -36,11 +36,11 @@ for(i in c(4:27)){
 max_10 = apply(air_data107_pm10[,4:27],1,max,na.rm=TRUE)
 max_10 <- data.frame(max_10)
 air_data107_pm2.5 <- cbind(air_data107_pm2.5,max_10)
-# ¤é´Á <- air_data107_pm10$¤é´Á
-# max_10 <- cbind(¤é´Á,max_10)
-# air_data107_pm2.5 <- merge(x = max_10, y = air_data107_pm2.5, by = "¤é´Á", all = TRUE)
+# æ—¥æœŸ <- air_data107_pm10$æ—¥æœŸ
+# max_10 <- cbind(æ—¥æœŸ,max_10)
+# air_data107_pm2.5 <- merge(x = max_10, y = air_data107_pm2.5, by = "æ—¥æœŸ", all = TRUE)
 
-air_data107_co <- air_data107_1[air_data107_1$´ú¶µ=='CO',]
+air_data107_co <- air_data107_1[air_data107_1$æ¸¬é …=='CO',]
 for(i in c(4:27)){
   for(x in c(1:365)){
     if(air_data107_co[x,i]>4){
@@ -52,7 +52,7 @@ max_co = apply(air_data107_co[,4:27],1,max,na.rm=TRUE)
 max_co <- data.frame(max_co)
 air_data107_pm2.5 <- cbind(air_data107_pm2.5,max_co)
 
-air_data107_no2 <- air_data107_1[air_data107_1$´ú¶µ=='NO2',]
+air_data107_no2 <- air_data107_1[air_data107_1$æ¸¬é …=='NO2',]
 for(i in c(4:27)){
   for(x in c(1:365)){
     if(air_data107_no2[x,i]>250){
@@ -64,7 +64,7 @@ max_no2 = apply(air_data107_no2[,4:27],1,max,na.rm=TRUE)
 max_no2 <- data.frame(max_no2)
 air_data107_pm2.5 <- cbind(air_data107_pm2.5,max_no2)
 
-air_data107_so2 <- air_data107_1[air_data107_1$´ú¶µ=='NO2',]
+air_data107_so2 <- air_data107_1[air_data107_1$æ¸¬é …=='NO2',]
 for(i in c(4:27)){
   for(x in c(1:365)){
     if(air_data107_so2[x,i]>250){
@@ -76,7 +76,7 @@ max_so2 = apply(air_data107_so2[,4:27],1,max,na.rm=TRUE)
 max_so2 <- data.frame(max_so2)
 air_data107_pm2.5 <- cbind(air_data107_pm2.5,max_so2)
 
-air_data107_o3 <- air_data107_1[air_data107_1$´ú¶µ=='O3',]
+air_data107_o3 <- air_data107_1[air_data107_1$æ¸¬é …=='O3',]
 for(i in c(4:27)){
   for(x in c(1:365)){
     if(air_data107_o3[x,i]>200){
@@ -91,7 +91,7 @@ air_data107_ZONG <- cbind(air_data107_pm2.5,max_o3)
 ##############################################################
 air_data_ZONG <- rbind(air_data103_ZONG,air_data104_ZONG,air_data105_ZONG,
                      air_data106_ZONG,air_data107_ZONG)
-write.csv(air_data_ZONG,file="D:\\¬ã¨s©Ò(2019.9.23)\\ºÓ¤@¤W\\RÅª®Ñ·|\\project\\data\\air_Taichung\\csv\\air_data_ZONG.csv",row.names = FALSE)
+write.csv(air_data_ZONG,file="D:\\...",row.names = FALSE)
 
 
 
