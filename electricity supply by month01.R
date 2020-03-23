@@ -3,75 +3,75 @@ library(ggplot2)
 library(highcharter)
 library(lattice)
 library(tidyverse)
-setwd('D:\\¬ã¨s©Ò(2019.9.23)\\ºÓ¤@¤W\\RÅª®Ñ·|\\project\\data')
+setwd('D:\\...')
 data <- read.csv('sum of supply by month.csv',header=T,fileEncoding = 'UCS-2LE')
 data[is.na(data)] <- 0
-select(data,starts_with('®Ö¤G'))
+select(data,starts_with('æ ¸äºŒ'))
 win.graph()
 highchart()%>%
-  hc_title(text='®Ö¯à¨ÑÀ³')%>%
+  hc_title(text='æ ¸èƒ½ä¾›æ‡‰')%>%
   hc_xAxis(categories=data$date)%>%
-  hc_add_series(name='·s¥_®Ö2-1',data=data$'®Ö¤G1¸U¢`',color='#3D4490')%>%
-  hc_add_series(name='·s¥_®Ö2-2',data=data$'®Ö¤G2¸U¢`',color='#5994FF')%>%
-  hc_add_series(name='«ÌªF®Ö3-1',data=data$®Ö¤T1,color='#FF5126')%>%
-  hc_add_series(name='«ÌªF®Ö3-2',data=data$®Ö¤T2,color='#FD9A28')
+  hc_add_series(name='æ–°åŒ—æ ¸2-1',data=data$'æ ¸äºŒ1è¬ç“©',color='#3D4490')%>%
+  hc_add_series(name='æ–°åŒ—æ ¸2-2',data=data$'æ ¸äºŒ2è¬ç“©',color='#5994FF')%>%
+  hc_add_series(name='å±æ±æ ¸3-1',data=data$æ ¸ä¸‰1,color='#FF5126')%>%
+  hc_add_series(name='å±æ±æ ¸3-2',data=data$æ ¸ä¸‰2,color='#FD9A28')
 
 c <- highchart()%>%
-  hc_title(text='¥x¤¤¤õ¤O¨ÑÀ³')%>%
+  hc_title(text='å°ä¸­ç«åŠ›ä¾›æ‡‰')%>%
   hc_xAxis(categories=data$date)%>%
-  hc_add_series(name='¥x¤¤1',data=data$'¥x¤¤1')%>%
-  hc_add_series(name='¥x¤¤2',data=data$'¥x¤¤2')%>%
-  hc_add_series(name='¥x¤¤3',data=data$'¥x¤¤3')%>%
-  hc_add_series(name='¥x¤¤4',data=data$'¥x¤¤4')%>%
-  hc_add_series(name='¥x¤¤5',data=data$'¥x¤¤5')%>%
-  hc_add_series(name='¥x¤¤6',data=data$'¥x¤¤6')%>%
-  hc_add_series(name='¥x¤¤7',data=data$'¥x¤¤7')%>%
-  hc_add_series(name='¥x¤¤8',data=data$'¥x¤¤8')%>%
-  hc_add_series(name='¥x¤¤9',data=data$'¥x¤¤9')%>%
-  hc_add_series(name='¥x¤¤10',data=data$'¥x¤¤10')
+  hc_add_series(name='å°ä¸­1',data=data$'å°ä¸­1')%>%
+  hc_add_series(name='å°ä¸­2',data=data$'å°ä¸­2')%>%
+  hc_add_series(name='å°ä¸­3',data=data$'å°ä¸­3')%>%
+  hc_add_series(name='å°ä¸­4',data=data$'å°ä¸­4')%>%
+  hc_add_series(name='å°ä¸­5',data=data$'å°ä¸­5')%>%
+  hc_add_series(name='å°ä¸­6',data=data$'å°ä¸­6')%>%
+  hc_add_series(name='å°ä¸­7',data=data$'å°ä¸­7')%>%
+  hc_add_series(name='å°ä¸­8',data=data$'å°ä¸­8')%>%
+  hc_add_series(name='å°ä¸­9',data=data$'å°ä¸­9')%>%
+  hc_add_series(name='å°ä¸­10',data=data$'å°ä¸­10')
 c
 
 #############################################################
 data_require <- read.csv('Statistics on electricity consumption of residential and service industries and institutions in various counties and cities.csv',header = T,fileEncoding = 'UCS-2LE')
-require_sum <- data_require[data_require$¿¤¥«=='¦X­p',]
+require_sum <- data_require[data_require$ç¸£å¸‚=='åˆè¨ˆ',]
 require_sum1 <- require_sum[1:21,]
 
-require_sum1 <- rev(require_sum1$¤é´Á)
+require_sum1 <- rev(require_sum1$æ—¥æœŸ)
 
-require_sum1[order(require_sum1$¤é´Á),]
+require_sum1[order(require_sum1$æ—¥æœŸ),]
 
 d <- highchart()%>%
-  hc_title(text='°ª¶¯¤õ¤O¨ÑÀ³')%>%
+  hc_title(text='é«˜é›„ç«åŠ›ä¾›æ‡‰')%>%
   hc_xAxis(categories=data$date)%>%
-  hc_add_series(name='¿³¹F1',data=data['¿³¹F1'])%>%
-  hc_add_series(name='¿³¹F2',data=data['¿³¹F2'])%>%
-  hc_add_series(name='¿³¹F3',data=data['¿³¹F3'])%>%
-  hc_add_series(name='¿³¹F4',data=data['¿³¹F4'])%>%
-  hc_add_series(name='¤jªL1',data=data['¤jªL1'])%>%
-  hc_add_series(name='¤jªL2',data=data['¤jªL2'])
+  hc_add_series(name='èˆˆé”1',data=data['èˆˆé”1'])%>%
+  hc_add_series(name='èˆˆé”2',data=data['èˆˆé”2'])%>%
+  hc_add_series(name='èˆˆé”3',data=data['èˆˆé”3'])%>%
+  hc_add_series(name='èˆˆé”4',data=data['èˆˆé”4'])%>%
+  hc_add_series(name='å¤§æ—1',data=data['å¤§æ—1'])%>%
+  hc_add_series(name='å¤§æ—2',data=data['å¤§æ—2'])
 d
 highchart()%>%
-  hc_title(text='°ª¶¯¤õ¤O¨ÑÀ³')%>%
+  hc_title(text='é«˜é›„ç«åŠ›ä¾›æ‡‰')%>%
   hc_xAxis(categories=data$date)%>%
-  hc_add_series(name='¿³¹F1',data=data$¿³¹F1)%>%
-  hc_add_series(name='¿³¹F2',data=data$¿³¹F2)%>%
-  hc_add_series(name='¿³¹F3',data=data$¿³¹F3)%>%
-  hc_add_series(name='¿³¹F4',data=data$¿³¹F4)%>%
-  hc_add_series(name='¤jªL1',data=data$¤jªL1)%>%
-  hc_add_series(name='¤jªL2',data=data$¤jªL2)
+  hc_add_series(name='èˆˆé”1',data=data$èˆˆé”1)%>%
+  hc_add_series(name='èˆˆé”2',data=data$èˆˆé”2)%>%
+  hc_add_series(name='èˆˆé”3',data=data$èˆˆé”3)%>%
+  hc_add_series(name='èˆˆé”4',data=data$èˆˆé”4)%>%
+  hc_add_series(name='å¤§æ—1',data=data$å¤§æ—1)%>%
+  hc_add_series(name='å¤§æ—2',data=data$å¤§æ—2)
 
 highchart()%>%
-  hc_title(text='Á`¨Ñµ¹¶q(MW)')%>%
+  hc_title(text='ç¸½ä¾›çµ¦é‡(MW)')%>%
   hc_xAxis(categories=new_data$date)%>%
-  hc_add_series(name='Á`¨Ñ¹q¶q',data=new_data$sum,color = '#155FCF')
+  hc_add_series(name='ç¸½ä¾›é›»é‡',data=new_data$sum,color = '#155FCF')
 
 
-setwd('D:\\¬ã¨s©Ò(2019.9.23)\\ºÓ¤@¤W\\RÅª®Ñ·|\\project\\data\\usage')
+setwd('D:\\...')
 data_usage <- read.csv('Usage.csv')
 colnames(data_usage)
-group_by(data_usage,¦~¤ë¥÷)%>%
-  summarise(mean=mean(X25ºî¦X.¹q¤O¦X­p.°â¹q«×¼Æ.·í¤ë.))
-sum_usage <- aggregate(data_usage$X25ºî¦X.¹q¤O¦X­p.°â¹q«×¼Æ.·í¤ë.,by=list(data_usage$¦~¤ë¥÷),FUN=sum)
+group_by(data_usage,å¹´æœˆä»½)%>%
+  summarise(mean=mean(X25ç¶œåˆ.é›»åŠ›åˆè¨ˆ.å”®é›»åº¦æ•¸.ç•¶æœˆ.))
+sum_usage <- aggregate(data_usage$X25ç¶œåˆ.é›»åŠ›åˆè¨ˆ.å”®é›»åº¦æ•¸.ç•¶æœˆ.,by=list(data_usage$å¹´æœˆä»½),FUN=sum)
 class(sum_usage)
 
 
