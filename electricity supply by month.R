@@ -1,12 +1,12 @@
 library(tidyverse)
 library(zoo)
-setwd('D:\\¬ã¨s©Ò(2019.9.23)\\ºÓ¤@¤W\\RÅª®Ñ·|\\project\\data')
-raw_data <- read.csv('¥xÆW¹q¤O¤½¥q_¹L¥h¹q¤O¨Ñ»Ý¸ê°T.csv', header = T, fileEncoding = 'UCS-2LE')
+setwd('D:\\...')
+raw_data <- read.csv('å°ç£é›»åŠ›å…¬å¸_éŽåŽ»é›»åŠ›ä¾›éœ€è³‡è¨Š.csv', header = T, fileEncoding = 'UCS-2LE')
 summary(is.na(raw_data))
 raw_data[is.na(raw_data)] <- 0
 colnames <- colnames(raw_data)
 raw_data1 <- raw_data%>%
-  separate(¤é´Á,sep=c(4,6),into=c('year','month','date'))
+  separate(æ—¥æœŸ,sep=c(4,6),into=c('year','month','date'))
 raw_data2 <- group_by(raw_data1,month)%>%
   lapply(raw_data1,mean)
 
