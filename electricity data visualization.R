@@ -1,156 +1,156 @@
 library(tidyverse)
 library(ggplot2)
-setwd('D:\\¬ã¨s©Ò(2019.9.23)\\ºÓ¤@¤W\\RÅª®Ñ·|\\project\\data')
+setwd('D:\\...')
 data <- read.csv('Statistics on electricity consumption of residential and service industries and institutions in various counties and cities.csv',
-                 header=T,fileEncoding = 'UCS-2LE')# ¥ÎUCS-2LE¤~Åª±o¤F
+                 header=T,fileEncoding = 'UCS-2LE')# ç”¨UCS-2LEæ‰è®€å¾—äº†
 summary(is.na(data))
 class(data)
 data[2,]
-new_data <- data%>% # ¦~¤ë¤À¶}
-  separate(¤é´Á,
+new_data <- data%>% # å¹´æœˆåˆ†é–‹
+  separate(æ—¥æœŸ,
              sep=c(4,5,7),
              into=c('year','zyear','month','zmonth'))
 new_data <- select(new_data,-starts_with('z'))
-#data_taipei <- as.data.frame(filter(data,¿¤¥«=='¥x¥_¥«'))
-#select(data,'¿¤¥«')
-#filter(data,¿¤¥«=='¥x¥_¥«')
+#data_taipei <- as.data.frame(filter(data,ç¸£å¸‚=='å°åŒ—å¸‚'))
+#select(data,'ç¸£å¸‚')
+#filter(data,ç¸£å¸‚=='å°åŒ—å¸‚')
 #colnames(data_taipei) <- a
 #class(data_taipei)
 #a <- colnames(data)
 #class(a)
 ####################################################################
 
-# ¥Î¹q¦û¤ñ
+# ç”¨é›»ä½”æ¯”
 data[323:2139,][12] <- data[323:2139,][12]*100
-data_without_sum <- filter(data,¿¤¥«¥Î¹q¦û¤ñ...!=100)
+data_without_sum <- filter(data,ç¸£å¸‚ç”¨é›»ä½”æ¯”...!=100)
 win.graph()
 data_without_sum %>% 
-  ggplot(aes(x=data_without_sum$¤é´Á,y=data_without_sum$¿¤¥«¥Î¹q¦û¤ñ...,group=¿¤¥«,color=¿¤¥«)) +
+  ggplot(aes(x=data_without_sum$æ—¥æœŸ,y=data_without_sum$ç¸£å¸‚ç”¨é›»ä½”æ¯”...,group=ç¸£å¸‚,color=ç¸£å¸‚)) +
   geom_line() + 
   geom_point() + 
-  labs(x = "¦~¤ë" , y = "¥Î¹q¦û¤ñ",title = "¦U¿¤¥«¦U¤ë¥÷¥Î¹q¦û¤ñ")+
-  coord_cartesian(ylim = c(min(data_without_sum$¿¤¥«¥Î¹q¦û¤ñ), max(data_without_sum$¿¤¥«¥Î¹q¦û¤ñ)))+
+  labs(x = "å¹´æœˆ" , y = "ç”¨é›»ä½”æ¯”",title = "å„ç¸£å¸‚å„æœˆä»½ç”¨é›»ä½”æ¯”")+
+  coord_cartesian(ylim = c(min(data_without_sum$ç¸£å¸‚ç”¨é›»ä½”æ¯”), max(data_without_sum$ç¸£å¸‚ç”¨é›»ä½”æ¯”)))+
   theme(plot.title = element_text(hjust = 0.5))+
   theme(axis.text.x = element_text(angle=65, vjust=0.6))
   
-data_taipei[15:93,][12] <- data_taipei[15:93,][12]*100# 2018¦~¶}©l¡A¥Î¹q¦û¤ñ§ï¬°¦Ê¤À¤ñ§Î¦¡
+data_taipei[15:93,][12] <- data_taipei[15:93,][12]*100# 2018å¹´é–‹å§‹ï¼Œç”¨é›»ä½”æ¯”æ”¹ç‚ºç™¾åˆ†æ¯”å½¢å¼
 summary(data_taipei[,12])
 win.graph()
-plot(data_taipei$¤é´Á,data_taipei$¿¤¥«¥Î¹q¦û¤ñ,pch=16)
+plot(data_taipei$æ—¥æœŸ,data_taipei$ç¸£å¸‚ç”¨é›»ä½”æ¯”,pch=16)
 
 new_data[323:2139,][12] <- new_data[323:2139,][12]*100
-new_data_without_sum <- filter(new_data,¿¤¥«¥Î¹q¦û¤ñ...!=100)
+new_data_without_sum <- filter(new_data,ç¸£å¸‚ç”¨é›»ä½”æ¯”...!=100)
 win.graph()
 data_without_sum %>% 
-  ggplot(aes(x=data_without_sum$month,y=data_without_sum$¿¤¥«¥Î¹q¦û¤ñ,group=¿¤¥«,color=¿¤¥«)) +
+  ggplot(aes(x=data_without_sum$month,y=data_without_sum$ç¸£å¸‚ç”¨é›»ä½”æ¯”,group=ç¸£å¸‚,color=ç¸£å¸‚)) +
   geom_line() + 
   geom_point() + 
-  labs(x = "¤ë¥÷" , y = "¥Î¹q¦û¤ñ",title = "¦U¿¤¥«¦U¤ë¥÷¥Î¹q¦û¤ñ")+
-  coord_cartesian(ylim = c(min(data_without_sum$¿¤¥«¥Î¹q¦û¤ñ), max(data_without_sum$¿¤¥«¥Î¹q¦û¤ñ)))+
+  labs(x = "æœˆä»½" , y = "ç”¨é›»ä½”æ¯”",title = "å„ç¸£å¸‚å„æœˆä»½ç”¨é›»ä½”æ¯”")+
+  coord_cartesian(ylim = c(min(data_without_sum$ç¸£å¸‚ç”¨é›»ä½”æ¯”), max(data_without_sum$ç¸£å¸‚ç”¨é›»ä½”æ¯”)))+
   theme(plot.title = element_text(hjust = 0.5))
 
 colnames(data)
 ####################################################################
 
-## ¦U¿¤¥«¥­§¡¥Î¹q¦û¤ñ
+## å„ç¸£å¸‚å¹³å‡ç”¨é›»ä½”æ¯”
 aa <- 
-  group_by(new_data_without_sum,¿¤¥«,month) %>%
-  summarise(¥­§¡¥Î¹q¦û¤ñ=mean(¿¤¥«¥Î¹q¦û¤ñ...))
+  group_by(new_data_without_sum,ç¸£å¸‚,month) %>%
+  summarise(å¹³å‡ç”¨é›»ä½”æ¯”=mean(ç¸£å¸‚ç”¨é›»ä½”æ¯”...))
 aa1 <- 
-  group_by(aa,¿¤¥«) %>%
-  summarise(¥­§¡¥Î¹q¦û¤ñ=mean(¥­§¡¥Î¹q¦û¤ñ))
-order(aa1$¥­§¡¥Î¹q¦û¤ñ)
+  group_by(aa,ç¸£å¸‚) %>%
+  summarise(å¹³å‡ç”¨é›»ä½”æ¯”=mean(å¹³å‡ç”¨é›»ä½”æ¯”))
+order(aa1$å¹³å‡ç”¨é›»ä½”æ¯”)
 
 win.graph()
 aa%>%
-  ggplot(aes(x=month,y=¥­§¡¥Î¹q¦û¤ñ,group=¿¤¥«,color=¿¤¥«)) +
+  ggplot(aes(x=month,y=å¹³å‡ç”¨é›»ä½”æ¯”,group=ç¸£å¸‚,color=ç¸£å¸‚)) +
   geom_line() + 
   geom_point()
 # draw 4 largest
-data_largest <- filter(data_without_sum,¿¤¥«=='¥x¥_¥«'|¿¤¥«=='·s¥_¥«'|¿¤¥«=='¥x¤¤¥«'|
-                         ¿¤¥«=='°ª¶¯¥«')
+data_largest <- filter(data_without_sum,ç¸£å¸‚=='å°åŒ—å¸‚'|ç¸£å¸‚=='æ–°åŒ—å¸‚'|ç¸£å¸‚=='å°ä¸­å¸‚'|
+                         ç¸£å¸‚=='é«˜é›„å¸‚')
 bb <- 
-  group_by(data_largest,¿¤¥«,month) %>%
-  summarise(¥­§¡¥Î¹q¦û¤ñ=mean(¿¤¥«¥Î¹q¦û¤ñ...))
+  group_by(data_largest,ç¸£å¸‚,month) %>%
+  summarise(å¹³å‡ç”¨é›»ä½”æ¯”=mean(ç¸£å¸‚ç”¨é›»ä½”æ¯”...))
 
 win.graph()
 bb %>% 
-  ggplot(aes(x=month,y=¥­§¡¥Î¹q¦û¤ñ,group=¿¤¥«,color=¿¤¥«)) +
+  ggplot(aes(x=month,y=å¹³å‡ç”¨é›»ä½”æ¯”,group=ç¸£å¸‚,color=ç¸£å¸‚)) +
   geom_line() + 
   geom_point() + 
-  #coord_cartesian(ylim = c(min(data_largest$¿¤¥«¥Î¹q¦û¤ñ), max(data_largest$¿¤¥«¥Î¹q¦û¤ñ)))+
+  #coord_cartesian(ylim = c(min(data_largest$ç¸£å¸‚ç”¨é›»ä½”æ¯”), max(data_largest$ç¸£å¸‚ç”¨é›»ä½”æ¯”)))+
   theme(plot.title = element_text(hjust = 0.5))+
   theme(axis.text.x = element_text(angle=65, vjust=0.6))
 
 # draw 3 opposite
-data_opposite <- filter(data_without_sum,¿¤¥«=='¥x«n¥«'|¿¤¥«=='®ç¶é¥«'|¿¤¥«=='¹ü¤Æ¿¤')
+data_opposite <- filter(data_without_sum,ç¸£å¸‚=='å°å—å¸‚'|ç¸£å¸‚=='æ¡ƒåœ’å¸‚'|ç¸£å¸‚=='å½°åŒ–ç¸£')
 bbo <- 
-  group_by(data_opposite,¿¤¥«,¤é´Á) %>%
-  summarise(¥­§¡¥Î¹q¦û¤ñ=mean(¿¤¥«¥Î¹q¦û¤ñ...))
+  group_by(data_opposite,ç¸£å¸‚,æ—¥æœŸ) %>%
+  summarise(å¹³å‡ç”¨é›»ä½”æ¯”=mean(ç¸£å¸‚ç”¨é›»ä½”æ¯”...))
 
 win.graph()
 bbo %>% 
-  ggplot(aes(x=¤é´Á,y=¥­§¡¥Î¹q¦û¤ñ,group=¿¤¥«,color=¿¤¥«)) +
+  ggplot(aes(x=æ—¥æœŸ,y=å¹³å‡ç”¨é›»ä½”æ¯”,group=ç¸£å¸‚,color=ç¸£å¸‚)) +
   geom_line() + 
   geom_point() + 
-  #coord_cartesian(ylim = c(min(data_opposite$¿¤¥«¥Î¹q¦û¤ñ), max(data_opposite$¿¤¥«¥Î¹q¦û¤ñ)))+
+  #coord_cartesian(ylim = c(min(data_opposite$ç¸£å¸‚ç”¨é›»ä½”æ¯”), max(data_opposite$ç¸£å¸‚ç”¨é›»ä½”æ¯”)))+
   theme(plot.title = element_text(hjust = 0.5))+
   theme(axis.text.x = element_text(angle=65, vjust=0.6))
 
 # only one city graph
 colnames(data_without_sum)
-data_nt <- as.data.frame(filter(data_without_sum,¿¤¥«=='·s¥_¥«'))
+data_nt <- as.data.frame(filter(data_without_sum,ç¸£å¸‚=='æ–°åŒ—å¸‚'))
 win.graph()
 data_nt%>%
-  ggplot(aes(x=month,y=¿¤¥«¥Î¹q¦û¤ñ...,group=year,color=year))+
+  ggplot(aes(x=month,y=ç¸£å¸‚ç”¨é›»ä½”æ¯”...,group=year,color=year))+
   geom_line()+
   geom_point()+
-  labs(x = "month" , y = "¥Î¹q¦û¤ñ",title = "·s¥_¥«¦U¦~¤ë¥÷¥Î¹q¦û¤ñ")+
+  labs(x = "month" , y = "ç”¨é›»ä½”æ¯”",title = "æ–°åŒ—å¸‚å„å¹´æœˆä»½ç”¨é›»ä½”æ¯”")+
   theme(plot.title = element_text(hjust = 0.5))
 ####################################################################
 
-# ªA°È·~¥Î¹q¶q
+# æœå‹™æ¥­ç”¨é›»é‡
 colnames(data)
 win.graph()
 data %>% 
-  ggplot(aes(x=data$¤é´Á,y=data$ªA°È·~³¡ªù°â¹q¶q.«×.,group=¿¤¥«,color=¿¤¥«)) +
+  ggplot(aes(x=data$æ—¥æœŸ,y=data$æœå‹™æ¥­éƒ¨é–€å”®é›»é‡.åº¦.,group=ç¸£å¸‚,color=ç¸£å¸‚)) +
   geom_line() + 
   geom_point() + 
-  labs(x = "¦~¤ë" , y = "ªA°È·~³¡ªù¥Î¹q¶q",title = "¦U¿¤¥«¦U¤ë¥÷ªA°È·~³¡ªù¥Î¹q¶q")+
-  coord_cartesian(ylim = c(min(data_without_sum$ªA°È·~³¡ªù°â¹q¶q.«×.), max(data_without_sum$ªA°È·~³¡ªù°â¹q¶q.«×.)))+
+  labs(x = "å¹´æœˆ" , y = "æœå‹™æ¥­éƒ¨é–€ç”¨é›»é‡",title = "å„ç¸£å¸‚å„æœˆä»½æœå‹™æ¥­éƒ¨é–€ç”¨é›»é‡")+
+  coord_cartesian(ylim = c(min(data_without_sum$æœå‹™æ¥­éƒ¨é–€å”®é›»é‡.åº¦.), max(data_without_sum$æœå‹™æ¥­éƒ¨é–€å”®é›»é‡.åº¦.)))+
   theme(plot.title = element_text(hjust = 0.5))+
   theme(axis.text.x = element_text(angle=65, vjust=0.6))
 ## largest 6
 cc <- 
-  group_by(new_data,¿¤¥«,month) %>%
-  summarise(ªA°È·~³¡ªù¥Î¹q¶q=mean(ªA°È·~³¡ªù°â¹q¶q.«×.))
+  group_by(new_data,ç¸£å¸‚,month) %>%
+  summarise(æœå‹™æ¥­éƒ¨é–€ç”¨é›»é‡=mean(æœå‹™æ¥­éƒ¨é–€å”®é›»é‡.åº¦.))
 table(cc)
 cc1 <- 
-  group_by(cc,¿¤¥«)%>%
-  summarise(ªA°È·~³¡ªù¥Î¹q¶q=mean(ªA°È·~³¡ªù¥Î¹q¶q))
-order(dd$ªA°È·~³¡ªù¥Î¹q¶q)
-data_largest <- filter(data,¿¤¥«=='¥x¥_¥«'|¿¤¥«=='·s¥_¥«'|¿¤¥«=='¥x¤¤¥«'|
-                         ¿¤¥«=='°ª¶¯¥«'|¿¤¥«=='®ç¶é¥«'|¿¤¥«=='¥x«n¥«')
+  group_by(cc,ç¸£å¸‚)%>%
+  summarise(æœå‹™æ¥­éƒ¨é–€ç”¨é›»é‡=mean(æœå‹™æ¥­éƒ¨é–€ç”¨é›»é‡))
+order(dd$æœå‹™æ¥­éƒ¨é–€ç”¨é›»é‡)
+data_largest <- filter(data,ç¸£å¸‚=='å°åŒ—å¸‚'|ç¸£å¸‚=='æ–°åŒ—å¸‚'|ç¸£å¸‚=='å°ä¸­å¸‚'|
+                         ç¸£å¸‚=='é«˜é›„å¸‚'|ç¸£å¸‚=='æ¡ƒåœ’å¸‚'|ç¸£å¸‚=='å°å—å¸‚')
 win.graph()
 data_largest %>% 
-  ggplot(aes(x=data_largest$¤é´Á,y=data_largest$ªA°È·~³¡ªù°â¹q¶q.«×.,group=¿¤¥«,color=¿¤¥«)) +
+  ggplot(aes(x=data_largest$æ—¥æœŸ,y=data_largest$æœå‹™æ¥­éƒ¨é–€å”®é›»é‡.åº¦.,group=ç¸£å¸‚,color=ç¸£å¸‚)) +
   geom_line() + 
   geom_point() + 
-  labs(x = "¦~¤ë" , y = "ªA°È·~³¡ªù¥Î¹q¶q",title = "¦U¦~¤ëªA°È·~³¡ªù¥Î¹q¶q--«e¤»°ªªº¿¤¥«")+
-  coord_cartesian(ylim = c(min(data_without_sum$ªA°È·~³¡ªù°â¹q¶q.«×.), max(data_without_sum$ªA°È·~³¡ªù°â¹q¶q.«×.)))+
+  labs(x = "å¹´æœˆ" , y = "æœå‹™æ¥­éƒ¨é–€ç”¨é›»é‡",title = "å„å¹´æœˆæœå‹™æ¥­éƒ¨é–€ç”¨é›»é‡--å‰å…­é«˜çš„ç¸£å¸‚")+
+  coord_cartesian(ylim = c(min(data_without_sum$æœå‹™æ¥­éƒ¨é–€å”®é›»é‡.åº¦.), max(data_without_sum$æœå‹™æ¥­éƒ¨é–€å”®é›»é‡.åº¦.)))+
   theme(plot.title = element_text(hjust = 0.5))+
   theme(axis.text.x = element_text(angle=65, vjust=0.6))
 ####################################################################
 
-# ¦í¦v¥Î¹q¶q
+# ä½å®…ç”¨é›»é‡
 colnames(data)
 win.graph()
 data %>% 
-  ggplot(aes(x=data$¤é´Á,y=data$¦í¦v³¡ªù°â¹q¶q.«×.,group=¿¤¥«,color=¿¤¥«)) +
+  ggplot(aes(x=data$æ—¥æœŸ,y=data$ä½å®…éƒ¨é–€å”®é›»é‡.åº¦.,group=ç¸£å¸‚,color=ç¸£å¸‚)) +
   geom_line() + 
   geom_point() + 
-  labs(x = "¦~¤ë" , y = "¦í¦v¥Î¹q¶q",title = "¦U¿¤¥«¦U¤ë¥÷¦í¦v¥Î¹q¶q")+
-  coord_cartesian(ylim = c(min(data_without_sum$¦í¦v³¡ªù°â¹q¶q.«×.), max(data_without_sum$¦í¦v³¡ªù°â¹q¶q.«×.)))+
+  labs(x = "å¹´æœˆ" , y = "ä½å®…ç”¨é›»é‡",title = "å„ç¸£å¸‚å„æœˆä»½ä½å®…ç”¨é›»é‡")+
+  coord_cartesian(ylim = c(min(data_without_sum$ä½å®…éƒ¨é–€å”®é›»é‡.åº¦.), max(data_without_sum$ä½å®…éƒ¨é–€å”®é›»é‡.åº¦.)))+
   theme(plot.title = element_text(hjust = 0.5))+
   theme(axis.text.x = element_text(angle=65, vjust=0.6))
 
